@@ -2,7 +2,7 @@ const WebpackPwaManifest = require("require-pwa-manifest");
 const path = require("path");
 
 const config = {
-    entry: "./public/assets/index.js",
+    entry: "./public/assets/js/index.js",
     output: {
         path:__dirname + "/public/dist",
         filename: "bundle.js"
@@ -28,7 +28,7 @@ const config = {
             filename: "manifest.webmanifest",
             inject: false,
             fingerprints: false,
-
+            purpose: "any maskable",
             name: "budget-app",
             short_name: "budget-app",
             start_url: "/",
