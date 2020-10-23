@@ -7,6 +7,7 @@ const FILES_TO_CACHE = [
     "/index.html",
     "/assets/css/styles.css",
     "/assets/js/index.js",
+    "/assets/js/indexedDb.js",
     "/assets/icons/icon-192x192.png",
     "/assets/icons/icon-512x512.png",
     "/manifest.webmanifest",
@@ -48,7 +49,7 @@ self.addEventListener("install", function(evt) {
 
 self.addEventListener('fetch', function (event) {
     console.log(event.request.url);
-    //if (event.request.url.includes("/api/")) {
+    if (event.request.url.includes("/api/")) {
         event.respondWith(
             caches.open(DATA_CACHE_NAME).then(cache => {
                 return fetch(event.request)
@@ -64,13 +65,13 @@ self.addEventListener('fetch', function (event) {
             }).catch(err => console.log(err))
         );
         return;
-    //}
-/*
+    }
+
     event.respondWith(
         caches.match(event.request).then(function (response) {
             return response || fetch(event.request);
         })
-    );*/
+    );
 
 
 });
