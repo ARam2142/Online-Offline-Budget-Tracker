@@ -53,8 +53,7 @@ self.addEventListener('fetch', (event) => {
   } else if (event.request.url) {
     event.respondWith(
       caches.open(RUNTIME).then(cache => {
-        return fetch(event.request)
-          .then(response => {
+        return fetch(event.request).then(response => {
             //if the response is good, clone the response
             if(response.status === 200) {
               cache.put(event.request.url, response.clone());
