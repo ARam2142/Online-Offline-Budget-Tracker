@@ -44,6 +44,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+//fetch data
 self.addEventListener('fetch', (event) => {
   if (event.request.method != "GET") {
     event.respondWith(fetch(event.request));
@@ -54,14 +55,22 @@ self.addEventListener('fetch', (event) => {
       caches.open(RUNTIME).then(cache => {
         return fetch(event.request)
           .then(response => {
-            cache.put(event.request.url, response.clone());
+            //if the response is good, clone the response
+            if(response.status === 200) {
+              cache.put(event.request.url, response.clone());
+            }
+
             return response;
           })
-          .catch(() => caches.match(event.request));
-      })
+          .catch(err => {
+            return caches.match(event.request);
+
+          })
+      }).catch(err => (console.log(err)))
+
     );
     return;
-  };
+  }
 
 });
 
