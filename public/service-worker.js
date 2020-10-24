@@ -50,7 +50,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(fetch(event.request));
     return;
 
-  } else if (event.request.url) {
+  } else if (event.request.url) {   //help from classmates
     event.respondWith(
       caches.open(RUNTIME).then(cache => {
         return fetch(event.request).then(response => {
