@@ -17,12 +17,13 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(
-  process.env.MONGODB || "mongodb://localhost/budget", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true, 
-  useCreateIndex: true,
-  useFindAndModify: false
-});
+  process.env.MONGODB || "mongodb://localhost/budget",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  });
 
 // routes
 app.use(require("./routes/api.js"));
